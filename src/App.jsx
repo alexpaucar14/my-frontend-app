@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
 import Productos from "./pages/mantenimiento/producto/Listar";
+import Usuarios from "./pages/mantenimiento/usuario/Listar";
 import Permisos from "./pages/seguridad/Permisos";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/login/Login";
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Dashboard />} />
           <Route path="mantenimiento/productos" element={<Productos />} />
+          <Route path="mantenimiento/usuarios" element={<Usuarios />} />
           <Route path="pages/Dashboard" element={<Dashboard />} />
           <Route path="seguridad/permisos" element={<Permisos />} />
         </Route>
@@ -31,4 +33,3 @@ export default function App() {
     </BrowserRouter>
   );
 }
-
