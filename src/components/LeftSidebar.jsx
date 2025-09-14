@@ -140,11 +140,11 @@ export default function LeftSidebar() {
             <div className="collapse" id="sidebarEcommerce">
               <ul className="side-nav-second-level">
                 <li>
-                  <a href="apps-ecommerce-products.html">Products</a>
+                  <a href="/mantenimiento/productos">Products</a>
                 </li>
                 <li>
-                  <a href="apps-ecommerce-products-details.html">
-                    Products Details
+                  <a href="/mantenimiento/usuarios">
+                    Usuarios
                   </a>
                 </li>
                 <li>

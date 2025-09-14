@@ -1,20 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import "../assets/vendor/daterangepicker/daterangepicker.css";
 import "../assets/vendor/jsvectormap/css/jsvectormap.min.css";
 
 export default function Dashboard() {
-    useEffect(() => {
-        const script = document.createElement("script");
-        script.src = "/assets/js/pages/demo.dashboard.js"; // Debe estar en public/
-        script.async = true;
-        document.body.appendChild(script);
 
-        return () => {
-            // limpiar cuando salgas del dashboard
-            document.body.removeChild(script);
-        };
-    }, []);
+    
 
     return (
         <div className="container-fluid">
