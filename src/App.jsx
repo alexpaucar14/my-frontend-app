@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/login/Login";
 import Registro from "./pages/login/Registro";
 import AuthLayout from "./layouts/AuthLayout";
+import PrivateRoute from "./components/PrivateRoute"; 
 
 import "./App.css";
 
@@ -23,7 +24,11 @@ export default function App() {
         </Route>
 
         {/* Resto de la app → usa MainLayout */}
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={
+            <PrivateRoute>
+              <MainLayout />
+            </PrivateRoute>
+          }>
           <Route index element={<Dashboard />} />
           <Route path="mantenimiento/productos" element={<Productos />} />
           <Route path="mantenimiento/usuarios" element={<Usuarios />} />

@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function TopBar() {
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        navigate("/login");
+    };
+    
     return (
         <div className="navbar-custom">
             <div className="topbar container-fluid">
@@ -531,7 +538,7 @@ export default function TopBar() {
                                 <span>Lock Screen</span>
                             </a>
                             {/* item*/}
-                            <a href="javascript:void(0);" className="dropdown-item">
+                            <a onClick={handleLogout} className="dropdown-item">
                                 <i className="mdi mdi-logout me-1" />
                                 <span>Logout</span>
                             </a>
