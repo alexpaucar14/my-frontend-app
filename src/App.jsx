@@ -1,16 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+// Layouts and Pages
 import MainLayout from "./layouts/MainLayout";
+import Dashboard from "./pages/Dashboard";
+
+// Maintentance
+import PrivateRoute from "./components/PrivateRoute";
 import Productos from "./pages/mantenimiento/producto/Listar";
 import Usuarios from "./pages/mantenimiento/usuario/Listar";
 import Permisos from "./pages/seguridad/Permisos";
-import Dashboard from "./pages/Dashboard";
-import Login from "./pages/login/Login";
-import Registro from "./pages/login/Registro";
-import AuthLayout from "./layouts/AuthLayout";
-import PrivateRoute from "./components/PrivateRoute"; 
 
+// Public
+import Login from "./pages/public/Login";
+import Registro from "./pages/public/Registro";
+import AuthLayout from "./layouts/AuthLayout";
+
+// Styles
 import "./App.css";
 
 export default function App() {
@@ -32,7 +39,6 @@ export default function App() {
           <Route index element={<Dashboard />} />
           <Route path="mantenimiento/productos" element={<Productos />} />
           <Route path="mantenimiento/usuarios" element={<Usuarios />} />
-          <Route path="pages/Dashboard" element={<Dashboard />} />
           <Route path="seguridad/permisos" element={<Permisos />} />
         </Route>
       </Routes>

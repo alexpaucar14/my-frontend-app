@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import ModalBase from "../modal/ModalBase";
 import { apiService } from "../../services/apiService";
 import { toast } from "react-toastify";
+import { Spinner } from "react-bootstrap";
 
 export default function ListarBase({ title, columns, endpoint, FormComponent }) {
   const [data, setData] = useState([]);
@@ -139,6 +140,13 @@ export default function ListarBase({ title, columns, endpoint, FormComponent }) 
                       pagination
                       highlightOnHover
                       onSelectedRowsChange={data => console.log(records)}
+                      progressComponent={
+                        <div style={{ padding: "20px" }}>
+                          <Spinner animation="border" variant="primary" />
+                          <span style={{ marginLeft: "10px" }}>Cargando datos...</span>
+                        </div>
+                      }
+                      noDataComponent="⚠️ No se encontraron registros"
                     />
                   }
                 </div>

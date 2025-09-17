@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 
 import Footer from "../components/Footer";
-// import "../assets/css/auth.css"; // estilos base para auth
 
 export default function AuthLayout() {
     return (

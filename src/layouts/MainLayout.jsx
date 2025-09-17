@@ -9,7 +9,6 @@ import ThemeSettings from "./ThemeSettings";
 export default function MainLayout() {
   return (
     <>
-      <div className="wrapper">
         <TopBar />
         <LeftSidebar />
         <div className="content-page">
@@ -18,7 +17,6 @@ export default function MainLayout() {
           </div>
           <Footer />
         </div>
-      </div>
       <ThemeSettings/>
     </>
   );

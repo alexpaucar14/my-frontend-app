@@ -1,13 +1,24 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 
 export default function TopBar() {
     const navigate = useNavigate();
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+            setUser(JSON.parse(storedUser));
+        }
+    }, []);
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         navigate("/login");
     };
-    
+
     return (
         <div className="navbar-custom">
             <div className="topbar container-fluid">
@@ -508,8 +519,8 @@ export default function TopBar() {
                                 />
                             </span>
                             <span className="d-lg-flex flex-column gap-1 d-none">
-                                <h5 className="my-0">Dominic Keller</h5>
-                                <h6 className="my-0 fw-normal">Founder</h6>
+                                <h5 className="my-0">{user ? user.name : "Invitado"}</h5>
+                                <h6 className="my-0 fw-normal">{user ? user.email : ""}</h6>
                             </span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">
