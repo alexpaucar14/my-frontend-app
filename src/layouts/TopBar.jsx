@@ -64,12 +64,7 @@ export default function TopBar() {
                     <div className="app-search dropdown d-none d-lg-block">
                         <form>
                             <div className="input-group">
-                                <input
-                                    type="search"
-                                    className="form-control dropdown-toggle"
-                                    placeholder="Search..."
-                                    id="top-search"
-                                />
+                                <input type="search" className="form-control dropdown-toggle" placeholder="Search..." id="top-search" />
                                 <span className="mdi mdi-magnify search-icon" />
                                 <button className="input-group-text btn btn-primary" type="submit">
                                     Search

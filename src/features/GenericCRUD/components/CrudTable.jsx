@@ -14,6 +14,7 @@ export default function CrudTable({ title, columns, endpoint, FormComponent }) {
 
   const [showDelete, setShowDelete] = useState(false);
   const [toDelete, setToDelete] = useState(null);
+  const [searchValue, setSearchValue] = useState('');
 
   const formRef = useRef(null);
 
@@ -36,6 +37,7 @@ export default function CrudTable({ title, columns, endpoint, FormComponent }) {
 
   // 📌 Buscar
   const handleSearch = (e) => {
+    setSearchValue(e.target.value);
     const filtered = data.filter((r) =>
       JSON.stringify(r).toLowerCase().includes(e.target.value.toLowerCase())
     );
@@ -80,6 +82,7 @@ export default function CrudTable({ title, columns, endpoint, FormComponent }) {
     setEditMode(false);
     setSelected(null);
   };
+ 
 
   const paginationComponentOptions = {
     rowsPerPageText: 'Filas por página',
@@ -123,11 +126,25 @@ export default function CrudTable({ title, columns, endpoint, FormComponent }) {
             <div className="card">
               <div className="card-body">
                 <div className="row mb-2">
-                  <div className="col-sm-5">
-                    <input type="text" onChange={handleSearch} className="form-control" placeholder="Search..." id="search-input" />
+                  <div className="col-12 col-sm-5 mb-2 mb-sm-0">
+                    <div className="input-group">
+                      <span className="input-group-text" id="search-addon">
+                        <i className="mdi mdi-magnify"></i>
+                      </span>
+                      <input
+                        type="search"
+                        value={searchValue}
+                        onChange={handleSearch}
+                        className="form-control"
+                        placeholder="Search..."
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                      />
+                    </div>
+
                   </div>
                   <div className="col-sm-7">
-                    <div className="text-sm-end">
+                    <div className="text-sm-end d-flex flex-wrap gap-2">
                       <button className="btn btn-success mb-2 me-1" onClick={() => setShow(true)}>
                         <i className="mdi mdi-plus-circle me-2" /> Nuevo {title}
                       </button>
