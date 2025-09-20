@@ -21,8 +21,7 @@ export default function useCrud(endpoint, title) {
 
   const loadData = async () => {
     try {
-      const res = await apiService.getAll(endpoint);
-      const list = res.users || res; // dummyjson retorna {users: []}
+      const list = await apiService.getAll(endpoint);
       setData(list);
       setRecords(list);
     } catch (err) {
