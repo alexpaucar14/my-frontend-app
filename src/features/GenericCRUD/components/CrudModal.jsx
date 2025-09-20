@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
 
-export default function ModalBase({
+export default function CrudModal({
   title = "Modal",
   show = false,
   handleClose,

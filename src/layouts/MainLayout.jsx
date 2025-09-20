@@ -1,23 +1,26 @@
-import { Outlet } from "react-router-dom";
-import TopBar from "../components/TopBar";
-import LeftSidebar from "../components/LeftSidebar";
-import Footer from "../components/Footer";
-import ThemeSettings from "./ThemeSettings";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
+// Componentes del layout, ahora en la misma carpeta para una mejor cohesión
+import TopBar from './TopBar';
+import LeftSidebar from './LeftSidebar';
+import Footer from '../components/Footer';
 
+// El componente de configuración de tema es ahora un componente de UI genérico
+import ThemeSettings from '../components/ThemeSettings/ThemeSettings';
 
 export default function MainLayout() {
   return (
     <>
-        <TopBar />
-        <LeftSidebar />
-        <div className="content-page">
-          <div className="content">
-            <Outlet /> {/* Aquí se renderiza la página activa */}
-          </div>
-          <Footer />
+      <TopBar />
+      <LeftSidebar />
+      <div className="content-page">
+        <div className="content">
+          <Outlet /> {/* Aquí se renderiza la página anidada */}
         </div>
-      <ThemeSettings/>
+        <Footer />
+      </div>
+      <ThemeSettings />
     </>
   );
 }

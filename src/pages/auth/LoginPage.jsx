@@ -4,8 +4,6 @@ import * as Yup from "yup";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import "./login.css";
-
 // ✅ Validación con Yup
 const validationSchema = Yup.object({
   username: Yup.string().required("El usuario es obligatorio"),

@@ -1,37 +1,89 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+VITE v7.1.4
 
 
 ## Estructura:
 
 react-app/
- ├── public/                # Archivos estáticos (favicon, imágenes públicas)
- ├── src/
- │   ├── assets/            # Recursos (imágenes, CSS global, fuentes)
- │   ├── components/        # Componentes reutilizables (Button, Modal, etc.)
- │   ├── layouts/           # Layouts globales (MainLayout, AuthLayout)
- │   ├── pages/             # Vistas por ruta (Login, Dashboard, Ventas, Admin)
- │   ├── routes/            # Definición de rutas (react-router)
- │   ├── hooks/             # Hooks personalizados (useAuth, useFetch)
- │   ├── context/           # Context API (AuthProvider, ThemeProvider)
- │   ├── services/          # Conexiones a API (axios/fetch centralizado)
- │   ├── utils/             # Helpers, validaciones, formateadores
- │   ├── styles/            # Tailwind config, CSS global, variables
- │   ├── main.jsx           # Entry point de Vite/React
- │   └── App.jsx            # App principal
- ├── index.html
- ├── vite.config.js
- └── package.json
+├── public/
+│   ├── favicon.ico
+│   └── vite.svg
+├── src/
+│   ├── assets/               # 📂 Recursos estáticos globales (fuentes, iconos, estilos)
+│   │   ├── fonts/
+│   │   └── styles/
+│   │       ├── _variables.css
+│   │       └── global.css
+│   ├── components/           # 📦 Componentes UI reutilizables (Botones, Modales, Spinner)
+│   │   ├── Button/
+│   │   │   └── Button.jsx
+│   │   ├── Modal/
+│   │   │   └── Modal.jsx
+│   │   └── Spinner/
+│   │       └── Spinner.jsx
+│   ├── features/             # 🚀 Lógica de negocio agrupada por funcionalidad (CORE)
+│   │   ├── Auth/
+│   │   │   ├── components/   # Formularios específicos de autenticación (Login, Register)
+│   │   │   ├── hooks/        # Hooks personalizados para autenticación
+│   │   │   │   └── useAuth.js
+│   │   │   ├── services/     # Funciones de conexión a la API de autenticación
+│   │   │   │   └── authService.js
+│   │   │   └── context/      # Contexto para manejar el estado del usuario
+│   │   │       └── AuthProvider.jsx
+│   │   ├── GenericCRUD/      # 🏗️ Lógica y componentes para mantenedores genéricos
+│   │   │   ├── components/
+│   │   │   │   ├── CrudTable.jsx
+│   │   │   │   └── CrudForm.jsx
+│   │   │   └── hooks/
+│   │   │       └── useCrud.js
+│   │   ├── Users/            # Mantenedor de Usuarios (implementación del GenericCRUD)
+│   │   │   ├── components/
+│   │   │   │   └── UserForm.jsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useUsers.js
+│   │   │   └── services/
+│   │   │       └── userService.js
+│   │   ├── Products/         # Mantenedor de Productos
+│   │   │   ├── components/
+│   │   │   │   └── ProductForm.jsx
+│   │   │   ├── hooks/
+│   │   │   │   └── useProducts.js
+│   │   │   └── services/
+│   │   │       └── productService.js
+│   │   └── Dashboard/
+│   │       ├── components/   # Widgets y gráficos
+│   │       └── hooks/
+│   │           └── useDashboard.js
+│   ├── layouts/              # 🏛️ Estructura global de las páginas (MainLayout, AuthLayout)
+│   │   ├── MainLayout.jsx
+│   │   └── AuthLayout.jsx
+│   ├── pages/                # 📄 Vistas principales agrupadas por sección
+│   │   ├── auth/             # Páginas relacionadas con la autenticación
+│   │   │   ├── LoginPage.jsx
+│   │   │   └── RegisterPage.jsx
+│   │   ├── public/           # Páginas públicas (landing, about)
+│   │   │   ├── HomePage.jsx
+│   │   │   └── AboutPage.jsx
+│   │   ├── app/              # Páginas del área privada de la aplicación
+│   │   │   ├── dashboard/
+│   │   │   │   └── DashboardPage.jsx
+│   │   │   ├── users/
+│   │   │   │   └── UsersPage.jsx
+│   │   │   ├── products/
+│   │   │   │   └── ProductsPage.jsx
+│   │   │   └── reports/
+│   │   │       └── SalesReportPage.jsx
+│   │   └── NotFoundPage.jsx  # Página de error 404
+│   ├── routes/               # 🛣️ Configuración centralizada de rutas
+│   │   └── AppRoutes.jsx
+│   ├── utils/                # 🛠️ Funciones de ayuda reutilizables (formatters, validators)
+│   │   └── formatters.js
+│   ├── main.jsx              # Punto de entrada de la aplicación
+│   └── App.jsx               # Componente principal que maneja la estructura de alto nivel
+├── index.html
+├── vite.config.js
+└── package.json
 
 
 ## Backend:
