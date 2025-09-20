@@ -21,16 +21,16 @@ export default function Listar() {
     (async () => {
       try {
         // 🔹 1. Cargar primero jQuery (vendor.js o jquery.min.js)
-        await loadScript("/assets/js/vendor.min.js");
+        // await loadScript("/assets/js/vendor.min.js");
 
         // 🔹 2. DataTables y sus plugins (en orden)
-        await loadScript("/assets/vendor/datatables.net/js/jquery.dataTables.min.js");
-        await loadScript("/assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js");
-        await loadScript("/assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js");
-        await loadScript("/assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js");
-        await loadScript("/assets/vendor/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js");
-        await loadScript("/assets/js/pages/demo.products.js");
-        await loadScript("/assets/js/app.min.js");
+        // await loadScript("/assets/vendor/datatables.net/js/jquery.dataTables.min.js");
+        // await loadScript("/assets/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js");
+        // await loadScript("/assets/vendor/datatables.net-responsive/js/dataTables.responsive.min.js");
+        // await loadScript("/assets/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js");
+        // await loadScript("/assets/vendor/jquery-datatables-checkboxes/js/dataTables.checkboxes.min.js");
+        // await loadScript("/assets/js/pages/demo.products.js");
+        // await loadScript("/assets/js/app.min.js");
 
         const $ = window.jQuery || window.$;
 

@@ -3,9 +3,11 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import AppRoutes from "./routes/AppRoutes"; // ✅ rutas centralizadas
+import { useJqueryScript } from './hooks/useJqueryScript';
 
 
 export default function App() {
+  useJqueryScript('/assets/js/app.min.js');
   return (
     <BrowserRouter>
       <AppRoutes />
