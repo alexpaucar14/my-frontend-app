@@ -1,5 +1,5 @@
 import axios from "axios";
-import Global from "../config/Global";
+import Global from "../../../config/Global";
 
 // ✅ Servicio genérico para consumir APIs
 export const apiService = {

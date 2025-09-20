@@ -1,93 +1,106 @@
-import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+// /hooks/useCrud.js
+import { useEffect, useRef, useState } from "react";
+import { toast } from "react-toastify";
+import { apiService } from "../services/crudService";
 
-const useCrud = ({ endpoint, service }) => {
+export default function useCrud(endpoint, title) {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [records, setRecords] = useState([]);
+  const [show, setShow] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+  const [selected, setSelected] = useState(null);
+  const [showDelete, setShowDelete] = useState(false);
+  const [toDelete, setToDelete] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
+  const formRef = useRef(null);
 
-  const fetchData = async () => {
-    setLoading(true);
-    try {
-      const result = await service.getAll(endpoint);
-      if (Array.isArray(result.users) || Array.isArray(result)) {
-        setData(result.users || result);
-      } else {
-        setData([]);
-        toast.error('La respuesta de la API no es un formato válido.');
-      }
-    } catch (err) {
-      setError(err);
-      setData([]);
-      toast.error('Error al cargar los datos.');
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  // 📌 cargar datos
   useEffect(() => {
-    fetchData();
-  }, [endpoint]);
+    loadData();
+  }, []);
 
-  const openModal = (item = null) => {
-    setSelectedItem(item);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedItem(null);
-  };
-
-  const handleSave = async (formData) => {
-    setLoading(true);
+  const loadData = async () => {
     try {
-      if (formData.id) {
-        await service.update(endpoint, formData.id, formData);
-        toast.success('Elemento actualizado con éxito.');
-      } else {
-        await service.create(endpoint, formData);
-        toast.success('Elemento creado con éxito.');
-      }
-      fetchData();
-      closeModal();
+      const res = await apiService.getAll(endpoint);
+      const list = res.users || res; // dummyjson retorna {users: []}
+      setData(list);
+      setRecords(list);
     } catch (err) {
-      setError(err);
-      toast.error('Error al guardar el elemento.');
-    } finally {
-      setLoading(false);
+      console.error(err);
+      toast.error(`Error al cargar ${title}`);
     }
   };
 
-  const handleDelete = async (item) => {
-    if (window.confirm(`¿Estás seguro de que quieres eliminar este elemento?`)) {
-      setLoading(true);
-      try {
-        await service.remove(endpoint, item.id);
-        toast.success('Elemento eliminado con éxito.');
-        fetchData();
-      } catch (err) {
-        setError(err);
-        toast.error('Error al eliminar el elemento.');
-      } finally {
-        setLoading(false);
+  // 📌 buscar
+  const handleSearch = (e) => {
+    setSearchValue(e.target.value);
+    const filtered = data.filter((r) =>
+      JSON.stringify(r).toLowerCase().includes(e.target.value.toLowerCase())
+    );
+    setRecords(filtered);
+  };
+
+  // 📌 guardar
+  const handleSubmit = async (values) => {
+    try {
+      if (editMode && selected) {
+        const updated = await apiService.update(endpoint, selected.id, values);
+        toast.success(`${title} actualizado`);
+        setRecords(records.map((r) => (r.id === selected.id ? updated : r)));
+      } else {
+        const created = await apiService.create(endpoint, values);
+        toast.success(`${title} creado`);
+        setRecords([...records, created]);
       }
+      handleClose();
+    } catch (err) {
+      console.error(err);
+      toast.error(`Error al guardar ${title}`);
     }
+  };
+
+  // 📌 eliminar
+  const handleDeleteConfirm = async () => {
+    try {
+      await apiService.remove(endpoint, toDelete.id);
+      toast.info(`${title} eliminado`);
+      setRecords(records.filter((r) => r.id !== toDelete.id));
+      setShowDelete(false);
+      setToDelete(null);
+    } catch (err) {
+      console.error(err);
+      toast.error(`Error al eliminar ${title}`);
+    }
+  };
+
+  // 📌 cerrar modal
+  const handleClose = () => {
+    setShow(false);
+    setEditMode(false);
+    setSelected(null);
   };
 
   return {
+    // estados
     data,
-    loading,
-    error,
-    isModalOpen,
-    selectedItem,
-    openModal,
-    closeModal,
-    handleSave,
-    handleDelete,
-  };
-};
+    records,
+    show,
+    editMode,
+    selected,
+    showDelete,
+    toDelete,
+    searchValue,
+    formRef,
 
-export default useCrud;
+    // acciones
+    setShow,
+    setEditMode,
+    setSelected,
+    setShowDelete,
+    setToDelete,
+    handleSearch,
+    handleSubmit,
+    handleDeleteConfirm,
+    handleClose,
+  };
+}
