@@ -1,8 +1,6 @@
-import ListarBase from "../../../components/tables/ListarBase";
-import UserForm from "../../../components/forms/UserForm";
-import Global from "../../../config/Global";
+import React from 'react';
 
-// 📌 Configuración de columnas específicas para usuarios
+// 📌 Configuración de columnas específica para usuarios
 const userColumns = ({ onEdit, onDelete }) => [
   {
     name: "Customer",
@@ -10,7 +8,7 @@ const userColumns = ({ onEdit, onDelete }) => [
       <div className="table-user d-flex align-items-center">
         <img src={row.image} alt="table-user" className="me-2 rounded-circle" width="32" height="32" />
         <a href="javascript:void(0);" className="text-body fw-semibold">
-          {row.firstName} {row.lastName} { row.maidenName}
+          {row.firstName} {row.lastName} {row.maidenName}
         </a>
       </div>
     ),
@@ -45,13 +43,4 @@ const userColumns = ({ onEdit, onDelete }) => [
   },
 ];
 
-export default function ListarUsuarios() {
-  return (
-    <ListarBase
-      title="Usuario"
-      columns={userColumns}
-      endpoint={Global.ENDPOINTS.USERS}
-      FormComponent={UserForm}
-    />
-  );
-}
+export default userColumns;

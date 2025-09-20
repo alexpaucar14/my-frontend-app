@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import DataTable from "react-data-table-component";
-import ModalBase from "../modal/ModalBase";
-import { apiService } from "../../services/apiService";
+import CrudModal from "../../GenericCRUD/components/CrudModal";
+import { apiService } from "../../../services/apiService";
 import { toast } from "react-toastify";
 import { Spinner } from "react-bootstrap";
 
-export default function ListarBase({ title, columns, endpoint, FormComponent }) {
+export default function CrudTable({ title, columns, endpoint, FormComponent }) {
   const [data, setData] = useState([]);
   const [records, setRecords] = useState([]);
   const [show, setShow] = useState(false);
@@ -81,6 +81,22 @@ export default function ListarBase({ title, columns, endpoint, FormComponent }) 
     setSelected(null);
   };
 
+  const paginationComponentOptions = {
+    rowsPerPageText: 'Filas por página',
+    rangeSeparatorText: 'de',
+    selectAllRowsItem: true,
+    selectAllRowsItemText: 'Todos',
+  };
+
+  const customStyles = {
+    headCells: {
+      style: {
+        fontSize: '1rem',
+        fontWeight: 'bold',
+      },
+    },
+  };
+
   return (
     <>
       <div className="container-fluid">
@@ -138,7 +154,12 @@ export default function ListarBase({ title, columns, endpoint, FormComponent }) 
                       })}
                       data={records}
                       pagination
+                      paginationComponentOptions={paginationComponentOptions}
+                      striped
+                      responsive
                       highlightOnHover
+                      pointerOnHover
+                      customStyles={customStyles}
                       onSelectedRowsChange={data => console.log(records)}
                       progressComponent={
                         <div style={{ padding: "20px" }}>
@@ -156,7 +177,7 @@ export default function ListarBase({ title, columns, endpoint, FormComponent }) 
         </div>
       </div>
       {/* modal crear/editar */}
-      <ModalBase
+      <CrudModal
         title={editMode ? "Editar Usuario" : "Crear Usuario"}
         show={show}
         handleClose={handleClose}
@@ -168,10 +189,10 @@ export default function ListarBase({ title, columns, endpoint, FormComponent }) 
         }
       >
         <FormComponent ref={formRef} onSubmit={handleSubmit} initialValues={selected} />
-      </ModalBase>
+      </CrudModal>
 
       {/* modal eliminar */}
-      <ModalBase
+      <CrudModal
         title="Confirmar eliminación"
         show={showDelete}
         handleClose={() => setShowDelete(false)}
@@ -185,7 +206,7 @@ export default function ListarBase({ title, columns, endpoint, FormComponent }) 
         {toDelete && (
           <p>¿Seguro que deseas eliminar al usuario <b>{toDelete.firstName + ' ' + toDelete.lastName}</b>?</p>
         )}
-      </ModalBase>
+      </CrudModal>
     </>
   );
 }
