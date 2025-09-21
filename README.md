@@ -16,6 +16,8 @@ react-app/
 │   │       ├── _variables.css
 │   │       └── global.css
 │   ├── components/           # 📦 Componentes UI reutilizables (Botones, Modales, Spinner)
+│   │   ├── layouts/
+│   │   │   └── MainLayout.jsx
 │   │   ├── Button/
 │   │   │   └── Button.jsx
 │   │   ├── Modal/
@@ -55,9 +57,6 @@ react-app/
 │   │       ├── components/   # Widgets y gráficos
 │   │       └── hooks/
 │   │           └── useDashboard.js
-│   ├── layouts/              # 🏛️ Estructura global de las páginas (MainLayout, AuthLayout)
-│   │   ├── MainLayout.jsx
-│   │   └── AuthLayout.jsx
 │   ├── pages/                # 📄 Vistas principales agrupadas por sección
 │   │   ├── auth/             # Páginas relacionadas con la autenticación
 │   │   │   ├── LoginPage.jsx

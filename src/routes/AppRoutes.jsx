@@ -1,11 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 
 // Layouts
-import MainLayout from "../layouts/MainLayout";
-import AuthLayout from "../layouts/AuthLayout";
+import MainLayout from "../components/layouts/MainLayout";
+import AuthLayout from "../components/layouts/AuthLayout";
 
 // Core
-import PrivateRoute from "../components/PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 
 // Pages - Public
 import LoginPage from "../pages/auth/LoginPage";
