@@ -83,7 +83,6 @@ react-app/
 ├── index.html
 ├── vite.config.js
 └── package.json
-```tree
 
 ## Backend:
 ```tree
@@ -104,4 +103,3 @@ express-api/
  ├── seeders/               # Datos iniciales (usuarios admin, etc.)
  ├── .env                   # Variables de entorno
  └── package.json
-```tree
