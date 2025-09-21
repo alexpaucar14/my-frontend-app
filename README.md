@@ -83,7 +83,7 @@ react-app/
 ├── index.html
 ├── vite.config.js
 └── package.json
-
+```
 ## Backend:
 ```tree
 express-api/
