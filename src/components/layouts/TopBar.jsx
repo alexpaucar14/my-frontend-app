@@ -178,8 +178,8 @@ export default function TopBar() {
                                 />
                             </span>
                             <span className="d-lg-flex flex-column gap-1 d-none">
-                                <h5 className="my-0">{user ? user.name : "Invitado"}</h5>
-                                <h6 className="my-0 fw-normal">{user ? user.email : ""}</h6>
+                                <h5 className="my-0">{user ? user.alias : "Invitado"}</h5>
+                                <h6 className="my-0 fw-normal">{user ? user.rol_nombre : ""}</h6>
                             </span>
                         </a>
                         <div className="dropdown-menu dropdown-menu-end dropdown-menu-animated profile-dropdown">

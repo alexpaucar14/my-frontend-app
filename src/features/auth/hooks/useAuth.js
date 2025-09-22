@@ -14,15 +14,9 @@ export default function useAuth() {
 
       // Guardamos el token y el usuario en localStorage
       localStorage.setItem("token", response.token);
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          name: `${response.firstName} ${response.lastName}`,
-          email: response.email,
-        })
-      );
+      localStorage.setItem("user", JSON.stringify(response.user));
 
-      toast.success("Bienvenido", { autoClose: 2000 });
+      toast.success(`Bienvenido ${response.user.alias}`, { autoClose: 2000 });
       navigate("/"); // Redirige al dashboard
     } catch (error) {
       console.error(error);
